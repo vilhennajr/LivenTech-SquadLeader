@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "db",
+  "port": 5432,
+  "username": "postgres",
+  "password": "liven",
+  "database": "liven",
+  "migrations": [
+    "./src/shared/infra/typeorm/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+  }
+}

@@ -8,6 +8,9 @@
     "strict": true,
     "noImplicitAny": true,
     "baseUrl": "./",
+    "paths": {
+      "@shared/*": ["src/shared/*"]
+    },
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
