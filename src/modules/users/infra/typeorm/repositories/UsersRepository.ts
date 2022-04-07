@@ -47,10 +47,10 @@ class UsersRepository implements IUsersRepository {
       .paginate()) as IPaginateUser;
   }
 
-  public async findByName(name: string): Promise<User | undefined> {
+  public async findById(id: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: {
-        name,
+        id,
       },
     });
 

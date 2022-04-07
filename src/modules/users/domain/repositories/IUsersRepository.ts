@@ -5,4 +5,5 @@ export interface IUsersRepository {
   findByEmail(email: string): Promise<IUser | undefined>;
   create(data: ICreateUser): Promise<IUser>;
   findAllPaginate(search: string, sortField: string): Promise<IPaginateUser>;
+  findById(id: string): Promise<IUser | undefined>;
 }
