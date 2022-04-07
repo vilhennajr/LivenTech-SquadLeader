@@ -30,6 +30,7 @@
     "typeorm": "^0.2.29",
     "pg": "^8.7.3",
     "class-transformer": "^0.5.1",
-    "tsyringe": "^4.6.0"
+    "tsyringe": "^4.6.0",
+    "celebrate": "^15.0.1"
   }
 }
