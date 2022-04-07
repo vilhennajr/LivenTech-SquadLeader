@@ -3,6 +3,8 @@ import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import ListUserService from '@modules/users/services/ListUserService';
 import ShowUserService from '@modules/users/services/ShowUserService';
+import DeleteUserService from '@modules/users/services/DeleteUserService';
+
 import { instanceToInstance } from 'class-transformer';
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -42,5 +44,15 @@ export default class UsersController {
     const user = await showUser.execute({ id });
 
     return response.json(user);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const deleteUser = container.resolve(DeleteUserService);
+
+    await deleteUser.execute({ id });
+
+    return response.json([]);
   }
 }

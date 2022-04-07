@@ -29,4 +29,14 @@ usersRouter.get(
   usersController.show,
 );
 
+usersRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  usersController.delete,
+);
+
 export default usersRouter;
