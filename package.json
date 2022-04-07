@@ -33,6 +33,7 @@
     "class-transformer": "^0.5.1",
     "tsyringe": "^4.6.0",
     "celebrate": "^15.0.1",
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^2.4.3",
+    "typeorm-pagination": "^2.0.1"
   }
 }
