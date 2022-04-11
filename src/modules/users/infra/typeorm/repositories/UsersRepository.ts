@@ -60,6 +60,12 @@ class UsersRepository implements IUsersRepository {
   public async remove(user: User): Promise<void> {
     await this.ormRepository.remove(user);
   }
+
+  public async save(user: User): Promise<User> {
+    await this.ormRepository.save(user);
+
+    return user;
+  }
 }
 
 export default UsersRepository;

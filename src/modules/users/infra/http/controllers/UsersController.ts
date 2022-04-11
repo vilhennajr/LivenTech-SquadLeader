@@ -6,6 +6,7 @@ import ShowUserService from '@modules/users/services/ShowUserService';
 import DeleteUserService from '@modules/users/services/DeleteUserService';
 
 import { instanceToInstance } from 'class-transformer';
+import UpdateUserService from '@modules/users/services/UpdateUserService';
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, email, password } = request.body;
@@ -54,5 +55,20 @@ export default class UsersController {
     await deleteUser.execute({ id });
 
     return response.json([]);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { name, email } = request.body;
+    const { id } = request.params;
+
+    const updateUser = container.resolve(UpdateUserService);
+
+    const user = await updateUser.execute({
+      id,
+      name,
+      email,
+    });
+
+    return response.json(user);
   }
 }

@@ -7,4 +7,5 @@ export interface IUsersRepository {
   findAllPaginate(search: string, sortField: string): Promise<IPaginateUser>;
   findById(id: string): Promise<IUser | undefined>;
   remove(user: IUser): Promise<void>;
+  save(user: IUser): Promise<IUser>;
 }

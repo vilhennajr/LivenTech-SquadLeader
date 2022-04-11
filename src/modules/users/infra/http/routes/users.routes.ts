@@ -39,4 +39,18 @@ usersRouter.delete(
   usersController.delete,
 );
 
+usersRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  usersController.update,
+);
+
 export default usersRouter;
