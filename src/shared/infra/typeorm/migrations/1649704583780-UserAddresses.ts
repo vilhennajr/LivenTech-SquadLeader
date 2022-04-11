@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class UserTokens1649702706625 implements MigrationInterface {
+export class UserAddresses1649704583780 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'user_tokens',
+        name: 'user_addresses',
         columns: [
           {
             name: 'id',
@@ -15,10 +15,32 @@ export class UserTokens1649702706625 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'token',
-            type: 'uuid',
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
+            name: 'street',
+            type: 'varchar',
+          },
+          {
+            name: 'number',
+            type: 'varchar',
+          },
+          {
+            name: 'district',
+            type: 'varchar',
+          },
+          {
+            name: 'zipcode',
+            type: 'varchar',
+          },
+          {
+            name: 'city',
+            type: 'varchar',
+          },
+          {
+            name: 'state',
+            type: 'varchar',
+          },
+          {
+            name: 'country',
+            type: 'varchar',
           },
           {
             name: 'user_id',
@@ -37,7 +59,7 @@ export class UserTokens1649702706625 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'TokenUser',
+            name: 'AddressUser',
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
@@ -50,6 +72,6 @@ export class UserTokens1649702706625 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('user_tokens');
+    await queryRunner.dropTable('user_addresses');
   }
 }
