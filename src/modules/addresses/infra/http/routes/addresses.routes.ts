@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import AddressesController from '../controllers/AddressesController';
+import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
 
 const addressesRouter = Router();
 const addressesController = new AddressesController();
+
+addressesRouter.use(isAuthenticated);
 
 addressesRouter.get('/', addressesController.index);
 
