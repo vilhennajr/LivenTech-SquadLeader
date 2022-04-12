@@ -3,12 +3,14 @@ import AppError from '@shared/errors/AppError';
 import { IUpdateAddress } from '../domain/models/IUpdateAddress';
 import Address from '../infra/typeorm/entities/Address';
 import { IAddressesRepository } from '../domain/repositories/IAddressesRepository';
-
+import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepository';
 @injectable()
 class UpdateAddressService {
   constructor(
     @inject('AddressesRepository')
     private addressesRepository: IAddressesRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
   ) {}
 
   public async execute({
@@ -26,6 +28,12 @@ class UpdateAddressService {
 
     if (!address) {
       throw new AppError('Address not found.');
+    }
+
+    const user = await this.usersRepository.findById(user_id);
+
+    if (!user) {
+      throw new AppError('User not found.');
     }
 
     address.user_id = user_id;

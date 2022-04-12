@@ -46,7 +46,7 @@ export default class AddressesController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { street, number, district, zipcode, city, state, country } =
+    const { user_id, street, number, district, zipcode, city, state, country } =
       request.body;
     const { id } = request.params;
 
@@ -54,6 +54,7 @@ export default class AddressesController {
 
     const address = await updateAddress.execute({
       id,
+      user_id,
       street,
       number,
       district,
